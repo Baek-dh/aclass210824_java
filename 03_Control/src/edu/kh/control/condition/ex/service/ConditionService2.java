@@ -140,23 +140,36 @@ public class ConditionService2 {
 		// 입력 받은 문자열에서 0번째 위치에 있는 문자를 꺼내 op 변수에 대입
 		
 		int result = 0; // 두 수의 연산 결과 저장용 변수
+		
+		boolean flag = true; // 결과를 출력할지, 말지를 지정하는 논리값
+		// true == 깃발 올라감 / false == 깃발 내려감
+		
 		switch(op) {
 		case '+' :  result = num1 + num2;  break;
 		case '-' :  result = num1 - num2;  break;
 		case '*' :  result = num1 * num2;  break;
-		case '/' :  result = num1 / num2;  break;
+		
+		case '/' :  
+			if( num2 == 0 ) {
+				System.out.println("0으로 나눌 수 없습니다.");
+				flag = false; // 깃발 내림 --> 결과 출력 X
+			}else {
+				result = num1 / num2;  
+			}
+			break;
+		
 		case '%' :  result = num1 % num2;  break;
 		
+		default : 
+			System.out.println("해당 연산자는 존재하지 않습니다.");
+			flag = false; // 깃발 내림 --> 결과 출력 X
 		}
 		
-		System.out.printf("%d %c %d = %d\n", num1, op, num2, result  );
 		
+		if(flag) { // 깃발이 올라가 있을 때만 결과를 출력
+			System.out.printf("%d %c %d = %d\n", num1, op, num2, result  );
+		}
 	}
-	
-	
-	
-	
-	
 	
 
 }
