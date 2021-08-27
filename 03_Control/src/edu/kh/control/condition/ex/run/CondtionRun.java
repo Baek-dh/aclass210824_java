@@ -20,7 +20,10 @@ public class CondtionRun {
 		
 		
 		ConditionService2 service2 = new ConditionService2();
-		service2.example1();
+//		service2.example1();
+//		service2.example2();
+//		service2.example3();
+		service2.example4();
 		
 		
 		
