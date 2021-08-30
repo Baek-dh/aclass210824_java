@@ -230,6 +230,9 @@ public class LoopService {
 		}
 		
 		for(int i = num1 ; i<= num2 ; i++) {
+					// 1      // 5
+					// i = 1 2 3 4 5
+			
 			if(i % 3 != 0) { // 3의 배수가 아닌 경우
 				sum += i;
 			}
@@ -299,9 +302,219 @@ public class LoopService {
 			}
 			System.out.println();
 		}
+	}
+	
+	
+	public void example14() {
+		// 중첩 반복문 응용1
+		
+		// 2중 for문을 이용하여 다음 모양을 출력하시오.
+		
+		// 12345
+		// 12345
+		// 12345
+		// 12345
+		// 12345
+		
+		for(int i=1 ; i<=5 ; i++) { // 줄(행)을 제어하는 반복문
+			
+			for(int j=1 ; j<=5 ; j++) { // 칸(열)을 제어하는 반복문
+				System.out.print(j);
+			}
+			System.out.println(); // 줄바꿈
+			
+		}
 		
 	}
 	
+	
+	public void example15() {
+		// 중첩 반복문 응용2
+		
+		// 2중 for문을 이용하여 다음 모양을 출력하시오.
+		
+		// 54321
+		// 54321
+		// 54321
+		// 54321
+		
+		// 4회만 반복하는 for문
+		for(int i=1 ; i<=4 ; i++) {
+			
+			// 5회 반복 시 4->1까지 줄어드는 for문
+			for(int j=5 ; j>=1 ; j--) {
+				System.out.print(j); // 4321 순서대로 출력
+			}
+			
+			System.out.println(); // 줄바꿈
+		}
+	}
+	
+	
+	public void example16() {
+		// 중첩 반복문 응용3
+		
+		// 9 ~ 2단까지 거꾸로 출력
+		// 각 단 사이에 띄어쓰기 추가
+		
+		// === 9단 ===
+		// 9 x 9 = 81
+		// 9 x 8 = 72
+		// ...
+		
+		// === 2단 ===
+		// 2 x 9 = 18
+		// ...
+		// 2 x 2 = 2
+		
+		for(int dan=9 ; dan >= 2 ; dan--) {
+			
+			System.out.println("=== " + dan + "단 ==="); // 단 시작 시 몇 단인지 출력
+			
+			for(int su=9 ; su >= 1 ; su--) {
+				System.out.printf("%d x %d = %d\n", dan, su, dan * su);
+			}
+			
+			System.out.println(); // 단이 끝날 때 마다 줄 바꿈
+		}
+	}
+	
+	
+	public void example17() {
+		// 중첩 반복문 응용 4
+		
+		// 2중 for문을 이용하여 아래 모양을 출력
+		
+		// 1
+		// 12
+		// 123
+		// 1234
+		
+		for(int i=1 ; i<=4 ; i++) { // 1~4행 까지 반복
+			
+			// i=1 일때 1
+			// i=2 일때 12
+			// i=3 일때 123
+			// i=4 일때 1234
+			
+			for(int j=1 ; j<=i ; j++) { // 반복 되는 행의 수에 따라 출력되는 횟수가 변경됨
+				System.out.print(j);
+			}
+			System.out.println(); // 줄바꿈
+		}
+	}
+	
+	
+	public void example18() {
+		// 중첩 반복문 응용 5
+		
+		// 2중 for문을 이용하여 아래 모양을 출력
+		
+		// 1234
+		// 123
+		// 12
+		// 1
+		
+		for(int i=4 ; i>=1 ; i--) {
+			
+			for(int j=1 ; j <= i ; j++) {
+				System.out.print(j);
+			}
+			
+			System.out.println();
+		}
+	}
+	
+	
+	public void example19() {
+		// 중첩 반복문 응용 6
+		
+		//  1  2  3  4
+		//  5  6  7  8
+		//  9 10 11 12
+		
+		int count = 1; // 1 ~ 12까지 증가하는 수
+		
+		for(int i=1 ; i<=3 ; i++) { // 3줄(행)
+			
+			for(int j=1 ; j<=4 ; j++) { // 4칸(열)
+				System.out.printf("%3d", count);
+				
+				count++;
+				// 1출력 -> 1증가 -> count=2
+				// 2출력 -> 1증가 -> count=3
+				// 3출력 -> 1증가 -> count=4
+				// 4출력 -> 1증가 -> count=5
+			}
+			
+			System.out.println(); // 줄바꿈
+			
+		}
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////
+	
+	
+	// while문
+	
+	/* 별도의 초기식, 증감식이 존재하지 않고
+	 * 반복 종료 조건을 자유롭게 설정하는 반복문
+	 * --> 언제 끝날지는 모르지만 종료하는 조건은 있음.
+	 * 
+	 * while( 조건식 ){
+	 * 	조건식이 true일 경우 수행할 구문
+	 * }
+	 * 
+	 * 
+	 * */
+	
+	public void example20() {
+		
+		// 입력된 모든 정수의 합 구하기
+		// 단, 0이 입력되면 결과 출력 후 종료
+		
+		Scanner sc = new Scanner(System.in);
+		
+		
+		int input = -1; // 초기값이 0일경우 while문을 수행할 수 없으므로
+						// 0 이외의 아무 값이나 대입
+		
+		int sum = 0;
+		
+		while(input != 0) {
+			// while문의 조건식이 true일 때 수행 O
+			// <-> while문의 조건식이 false일 때 수행 X
+			System.out.print("정수 입력 : ");
+			input = sc.nextInt();
+			
+			sum += input; // 누적
+		}
+		
+		System.out.println("합계 : " + sum);
+		
+	}
+	
+	
+	public void example21() {
+		
+		// while문을 for문 처럼 사용하기
+		
+		
+		// for(초기식 ; 조건식 ; 증감식) 
+		
+		// while(조건식) + 초기식 + 증감식
+		
+		// while문을 이용하여 1 ~ 10까지 출력
+		
+		int i=1; // 초기식
+		while(i <= 10) { // 조건식
+			System.out.println(i); // 출력
+			
+			i++; // 증감식
+		}
+		
+	}
 	
 	
 	
