@@ -1,4 +1,4 @@
-package edu.kh.condition.practice.service;
+package edu.kh.control.condition.practice.service;
 
 import java.util.Scanner;
 

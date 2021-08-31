@@ -1,6 +1,6 @@
-package edu.kh.condition.practice.run;
+package edu.kh.control.condition.practice.run;
 
-import edu.kh.condition.practice.service.PracticeService;
+import edu.kh.control.condition.practice.service.PracticeService;
 
 public class PracticeRun {
 	public static void main(String[] args) {
