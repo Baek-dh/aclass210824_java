@@ -265,7 +265,6 @@ public class ArrayService1 {
 		// 출력
 		System.out.print("입력 받은 키 : [");
 		
-		
 		// 역순 출력을 위한 for문 + 합계
 		double sum = 0;
 		for(int i=arr.length-1 ; i>=0 ; i--) {
@@ -273,13 +272,14 @@ public class ArrayService1 {
 			System.out.print(arr[i]);
 			sum += arr[i]; // 합계 누적
 			
+			
 			if(i > 0) { // 반복문이 마지막이 아닐 경우
 				System.out.print(", ");
 			}
+			
 		}
 		
 		System.out.println("]");
-		
 		System.out.println("평균 키 : " + (sum / arr.length));
 	}
 	
@@ -303,15 +303,82 @@ public class ArrayService1 {
 		// * 최대값, 최소값 찾기
 		// 10  20  15  27  35  14  20  30
 		
-		double max = 0.0; // 최대값을 저장하기 위한 변수
-		for(int i=0 ; i<=arr.length ; i++) {
+		//double max = 0.0; // 최대값을 저장하기 위한 변수
+		//double min = Double.MAX_VALUE; // 최소값을 저장하기 위한 변수
+		
+		// 최대/최소 찾기 방법 1  ( max, min 변수를 값을 입력 받기 전에 준비 )
+		// * 최대값을 저장하기 위한 변수에는 가장 작은값으로 초기화
+		// * 최소값을 저장하기 위한 변수에는 가장 큰값으로 초기화
+		
+		
+		double max = arr[0];
+		double min = arr[0];
+		// 최대/최소 찾기 방법 2 ( max, min 변수를 값을 입력 받은 후 준비 )
+		// * 최대, 최소를 저장하기 위한 변수에 배열의 첫 번째 요소 값을 대입
+		
+		
+		for(int i=0 ; i<arr.length ; i++) {
 			
+			// 최대값 찾기
+			if( arr[i] > max ) {
+				// 현재 접근한 배열 인덱스의 값이   
+				// max 변수에 저장된 값보다 큰 경우
+				max = arr[i];
+			}
+			
+			// 최소값 찾기
+			if( arr[i] <  min ) {
+				// 현재 접근한 배열 인덱스의 값이   
+				// min 변수에 저장된 값보다 작은 경우
+				min = arr[i];
+			}
 		}
 		
-		
-		
 		// 최장신 찾기
+		System.out.println("최장신 : " + max);
+		
+		// 최단신 찾기
+		System.out.println("최단신 : " + min);
+		
 	}
+	
+	
+	
+	public void example8() {
+		
+		// 입력 받은 정수 만큼의 크기를 가진 int 배열을 선언 및 할당 하고
+		// 배열의 각 인덱스에 5의 배수들을 하나씩 초기화
+		
+		// ex)
+		// 배열 크기 입력 : 4
+		// [5, 10, 15, 20]
+		
+		
+		// 배열 크기 입력 : 6
+		// [5, 10, 15, 20, 25, 30]
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("배열 크기 입력 : ");
+		int size = sc.nextInt();
+		
+		// int형 배열 선언 및 할당
+		// ** 코드 수행 중 원하는 크기에 배열을 만들 수 있다!!!
+		int[] arr = new int[size];
+		
+		// 할당된 배열의 각 인덱스 요소에 5의 배수 초기화
+		for(int i=0; i<arr.length ; i++) {
+					  /*size도 가능*/
+			
+			arr[i] = (i+1) * 5;
+		}
+		
+		// 결과 출력
+		System.out.println( Arrays.toString(arr) );
+		
+		
+	}
+	
 	
 	
 	

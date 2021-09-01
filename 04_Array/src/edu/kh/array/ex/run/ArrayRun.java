@@ -13,7 +13,9 @@ public class ArrayRun {
 //		service1.example3();
 //		service1.example4();
 //		service1.example5();
-		service1.example6();
+//		service1.example6();
+//		service1.example7();
+		service1.example8();
 		
 	}
 	
