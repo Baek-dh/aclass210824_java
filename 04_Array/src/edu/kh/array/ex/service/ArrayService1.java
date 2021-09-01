@@ -375,9 +375,112 @@ public class ArrayService1 {
 		
 		// 결과 출력
 		System.out.println( Arrays.toString(arr) );
+	}
+	
+	
+	
+	public void example9() {
 		
+		// 배열 내 일치하는 값을 찾기 (검색)
+		
+		int[] arr = {10, 20, 30, 40, 50}; // 배열 선언과 동시에 초기화
+		
+		Scanner sc = new Scanner(System.in);
+		
+		// 정수를 하나 입력 받아
+		// 입력 받은 정수가 배열에 있으면 몇번 인덱스에 있는지 출력
+		// 없으면 "일치하는 값이 없습니다" 출력
+		
+		System.out.print("정수 입력 : ");
+		int input = sc.nextInt();
+
+		boolean flag = true; // 검색 결과가 있는지 없는지 알려주는 신호
+		
+		for(int i=0 ; i<arr.length ; i++) {
+			
+			// 배열의 모든 인덱스 요소를 차례대로 접근하여 input과 같은지 비교
+			if(arr[i] == input) {
+				System.out.println( i + "번째 인덱스에 존재함");
+				flag = false;
+				break;
+			}
+		}
+		
+		if(flag) {
+			System.out.println("일치하는 값이 없습니다.");
+		}
 		
 	}
+	
+	
+	
+	
+	
+	public void example10() {
+		
+		// 단어를 하나 입력 받아
+		// char 배열의 각 인덱스 요소에 문자를 하나씩 순서대로 초기화하고
+		// 추가적으로 입력 받은 단어가 배열 내에 몇개 존재하는지 카운트
+		
+		// ex) 
+		// 단어 입력 : Hello
+		// 찾을 문자 : l
+		// l은 총 2개가 존재합니다.
+		
+		// 단어 입력 : Hello
+		// 찾을 문자 : x
+		// x는 존재하지 않습니다.
+		
+		Scanner sc = new Scanner(System.in);
+		
+		// 1) 단어 입력 받기
+		System.out.print("단어 입력 : ");
+		String word = sc.next();
+		
+		// 2-1) 단어 길이 만큼의 char 배열 생성
+		// String.length() : 문자열의 길이
+		// 배열명.length    : 배열의 길이
+		
+		char[] arr = new char[ word.length() ];
+		// -> 입력 받은 단어 길이 만큼의 char 배열 생성
+		
+		// 2-2) 생성된 배열의 각 인덱스 요소에 문자를 하나씩 초기화
+		for(int i=0 ; i<arr.length ; i++) {
+			arr[i] = word.charAt(i);
+			// arr[i] 요소에 word 문자열에서 i번째 문자를 얻어와 대입
+		}
+		
+		// 3) 찾으려는 문자를 입력 받기
+		System.out.print("찾을 문자 : ");
+		char ch = sc.next().charAt(0);
+		
+		
+		// 4) 입력 받은 문자가 배열에 있는지 검색하여
+		//    있으면 카운트를 증가 시킴
+		
+		int count = 0; // 검색된 문자 개수를 기록할 변수
+		
+		for(int i=0 ; i<arr.length ; i++) {
+			
+			if( arr[i] == ch ) {
+				// arr[i] 값이 ch와 같다면
+				count++; // 카운트 1 증가
+			}
+		}
+		
+		
+		// 5) 결과 출력
+		// - l은 총 2개가 존재합니다.
+		// - x는 존재하지 않습니다.
+		
+		if(count == 0) {
+			System.out.println(ch + "은/는 존재하지 않습니다.");
+		}else {
+			System.out.println(ch + "은/는 총 " + count + "개가 존재합니다.");
+		}
+		
+	}
+	
 	
 	
 	
