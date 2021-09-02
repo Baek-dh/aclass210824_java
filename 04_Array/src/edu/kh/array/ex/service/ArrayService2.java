@@ -187,8 +187,34 @@ public class ArrayService2 {
 		
 		System.out.println(Arrays.toString(lotto));
 		
+	}
+	
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	
+	// String, String[] 
+	public void example5() {
+		
+		String str1 = "Apple";
+		String str2 = "Banana";
+		
+		String[] arr = new String[3];
+		arr[0] = "Hello";
+		arr[1] = "안녕";
+		arr[2] = "Hi";
+		
+		System.out.println(str1); // str1에는 "Apple"이 저장되어있는 Heap영역 주소가 저장됨
+								  // 주소가 아닌 주소에 저장된 값을 참조하여 출력
+		System.out.println(str2);
+		
+		for(int i=0 ; i<arr.length ; i++) {
+			System.out.println( arr[i] );
+		}
 		
 	}
+	
 	
 	
 	

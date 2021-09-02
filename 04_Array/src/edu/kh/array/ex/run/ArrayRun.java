@@ -26,8 +26,9 @@ public class ArrayRun {
 //		service2.example2();
 //		service2.example3();
 //		service2.example4();
-		service2.lottoNumberConstructor();
+//		service2.lottoNumberConstructor();
 		
+		service2.example5();
 		
 		
 	}
