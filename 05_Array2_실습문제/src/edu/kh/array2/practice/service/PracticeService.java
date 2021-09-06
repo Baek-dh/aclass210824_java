@@ -377,7 +377,7 @@ public class PracticeService {
 	[실행 화면]
 	행 인덱스 입력 : 4
 	열 인덱스 입력 : 2
-	0 1 2 3 4
+	   0 1 2 3 4
 	0 
 	1
 	2
@@ -386,7 +386,7 @@ public class PracticeService {
 	*/
 	public void practice9() {
 		Scanner sc = new Scanner(System.in);
-		char[][] board = new char[5][5]; // char형 5행 5열 2차원 배열 생성
+		char[][] board = new char[6][6]; // char형 6행 6열 2차원 배열 생성
 
 		// char의 기본값은 '\u0000' == null을 표현하는 문자이나
 		// 출력 시 빈칸으로 출력됨.
@@ -395,12 +395,13 @@ public class PracticeService {
 		for (int i = 0; i < board.length-1; i++) {
 			board[0][i+1] = (char)(i + '0');
 			board[i+1][0] = (char)(i + '0');
+			
+			// '0' == 60번
 		}
 
 		
 		int rowIndex = 0;
 		int colIndex = 0;
-		
 		
 		while(true) {
 			System.out.print("행 인덱스 입력 : ");
@@ -432,6 +433,7 @@ public class PracticeService {
 			for (int j = 0; j < board[i].length; j++) {
 				if (i == rowIndex && j == colIndex) { // 사용자가 입력한 행과 열의 인덱스 값이 같을 때
 					board[i + 1][j + 1] = 'X';
+					// 실제 2차원 배열의 인덱스에 1을 추가한 값이 화면에 표시된 인덱스
 				}
 				System.out.print(board[i][j] + " ");
 			}
@@ -456,7 +458,7 @@ public class PracticeService {
 	*/
 	public void practice10() {
 		Scanner sc = new Scanner(System.in);
-		char[][] board = new char[6][6]; // char형 5행 5열 2차원 배열 생성
+		char[][] board = new char[6][6]; // char형 6행 6열 2차원 배열 생성
 
 
 		// 행과 열의 인덱스를 표시하는 부분에 인덱스 대입
@@ -467,15 +469,17 @@ public class PracticeService {
 
 		int rowIndex = 0;
 		int colIndex = 0;
-		do {
+		do { // 무조건 한번은 반복하는 do-while문
 			
 			while(true) {
 				System.out.print("행 인덱스 입력 : ");
 				rowIndex = sc.nextInt();
 				
-				if(rowIndex < 0 || rowIndex > 4) {
-					System.out.println("0~4사이 인덱스를 입력해주세요.");
-					continue;
+				if(rowIndex != 99) {
+					if(rowIndex < 0 || rowIndex > 4) {
+						System.out.println("0~4사이 인덱스를 입력해주세요.");
+						continue;
+					}
 				}
 				
 				break;
@@ -516,4 +520,111 @@ public class PracticeService {
 	}	
 	
 
+	/*
+	위 문제에서 자리 배치한 것을 가지고 학생 이름을 검색하여
+	해당 학생이 어느 자리에 앉았는지 출력하세요.
+	[실행 화면]
+	== 1분단 ==
+	강건강 남나나
+	도대담 류라라
+	문미미 박보배
+	== 2분단 ==
+	송성실 윤예의
+	진재주 차천축
+	피풍표 홍하하
+	============================
+	검색할 학생 이름을 입력하세요 : 차천축
+	검색하신 차천축 학생은 2분단 2번째 줄 오른쪽에 있습니다.
+	*/
+	
+	public void practice8b() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String[] students = {"강건강", "남나나", "도대담", "류라라", "문미미", "박보배", 
+				"송성실", "윤예의", "진재주", "차천축", "피풍표", "홍하하"};
+
+		String[][] seat1 = new String[3][2];
+		String[][] seat2 = new String[3][2];
+		
+		
+		int index = 0; // students 배열의 요소를 선택하는 용도의 변수
+		
+		// 1분단에 학생 대입
+		System.out.println("===1분단===");
+		for(int row=0 ; row<seat1.length ; row++) {
+			for(int col=0 ; col<seat1[row].length ; col++) {
+				seat1[row][col] = students[index];
+				//seat2[row][col] = students[index+6];
+				index++;
+				System.out.print(seat1[row][col] +  " ");
+			}
+			System.out.println(); // 줄바꿈
+		}
+		
+		// 2분단 학생 대입
+		System.out.println("===2분단===");
+		for(int row=0 ; row<seat2.length ; row++) {
+			for(int col=0 ; col<seat2[row].length ; col++) {
+				seat2[row][col] = students[index];
+				index++;
+				System.out.print(seat2[row][col] +  " ");
+			}
+			System.out.println(); // 줄바꿈
+		}
+		
+		
+		// 검색 
+		System.out.println("============================");
+		System.out.print("검색할 학생 이름을 입력하세요 : ");
+		String inputName = sc.next();
+		
+		// 검색 후 검색 결과가 있을 경우에
+		// 학생의 위치를 저장할 변수를 선언
+		int seat = 0; // 몇 분단
+		int searchRow = 0; // 몇 번줄
+		String direction = ""; // 왼쪽, 오른쪽 방향
+		
+		for(int row=0 ; row<seat1.length ; row++) {
+			for(int col=0 ; col<seat1[row].length ; col++) {
+				
+				// 1분단에 검색한 학생이 있는 경우
+				if( inputName.equals( seat1[row][col] )  ) {
+					seat = 1; // 1분단
+					searchRow = row + 1; // 몇 번줄
+					
+					direction = col == 0 ? "왼쪽" : "오른쪽"; // 삼항 연산자
+					/*if(col == 0) {
+						direction = "왼쪽";
+					}else {
+						direction = "오른쪽";
+					}*/
+				} else if( inputName.equals( seat2[row][col] )  ) {
+					// 2분단에 검색한 학생이 있는 경우
+					seat = 2; // 2분단
+					searchRow = row + 1; // 몇 번줄
+					direction = col == 0 ? "왼쪽" : "오른쪽"; // 삼항 연산자
+				}
+			}
+		}
+		
+		
+		// 결과 출력
+		if(seat != 0) {
+			System.out.printf("검색하신 %s 학생은 %d분단 %d번째 줄 %s에 있습니다.\n",
+					inputName, seat, searchRow, direction);
+		}else {
+			System.out.println("검색 결과가 없습니다.");
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

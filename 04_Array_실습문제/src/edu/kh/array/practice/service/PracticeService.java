@@ -588,6 +588,161 @@ public class PracticeService {
 		
 	}	
 	
+	/*
+	문자열을 입력 받아 문자열에 어떤 문자가 들어갔는지 배열에 저장하고
+	문자의 개수와 함께 출력하세요.
+	[실행 화면]
+	문자열 : application
+	문자열에 있는 문자 : a, p, l, i, c, t, o, n
+	문자 개수 : 8
+	 */
+	
+	public void practice13b() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("문자열 : ");
+		String str = sc.next();
+		
+		// 입력 받은 문자열 길이 만큼의 char 배열 생성
+		char[] arr = new char[str.length()];
+		
+		int count = 0; // 문자열에 포함된 문자 개수를 세기 위한 변수
+		
+		System.out.print("문자열에 있는 문자 : ");
+		for(int i=0 ; i<arr.length ; i++) {
+			
+			arr[i] = str.charAt(i); // 문자열의 문자를 char 배열에 저장
+			
+			boolean flag = true; // 중복이 되었는지 안되었는지를 알려줄 신호
+			
+			// 중복 검사
+			for(int j=0 ; j<i ; j++) {
+				if(arr[i] == arr[j]) { // 앞서 중복된 문자가 있을 경우
+					flag = false;
+					break;
+				}
+			}
+			
+			if(flag) { // 중복되지 않은 경우
+				
+				if(i == 0) { // 제일 앞글자
+					System.out.print( arr[i] );
+				}else {
+					
+					System.out.print( ", " + arr[i] );
+				}
+				
+				count++; // 문자 개수 1 증가
+			}
+		}
+		
+		System.out.println();
+		System.out.println("문자 개수 : " + count);
+		
+	}
+	
+	/* 실습문제 14
+	사용자가 입력한 배열의 길이만큼의 문자열 배열을 선언 및 할당하고
+	배열의 인덱스에 넣을 값 역시 사용자가 입력하여 초기화 하세요.
+	단, 사용자에게 배열에 값을 더 넣을지 물어보고 몇 개를 더 입력할 건지,
+	늘린 곳에 어떤 데이터를 넣을 것인지 받으세요.
+	사용자가 더 이상 입력하지 않겠다고 하면 배열 전체 값을 출력하세요.
+	*/
+	
+	/* Scanner 사용 시 문제점
+	 * 
+	 * - 스캐너 등 키보드 입력 시 입력 버퍼라는 곳에 임시 저장된 후 
+	 *   저장된 내용중 다음 정수, 실수, 단어, 문자열을 읽어옴.
+	 * 				nextInt()
+	 * 
+	 * ex) 입력 버퍼 1 2 3 \n H e l l o \n
+	 * 
+	 * nextInt() -> 입력 버퍼에서 다음 정수를 얻어옴. (띄어쓰기 또는 개행문자 전 까지)
+	 * 			 -> nextInt() == 123
+	 * 				남은 입력 버퍼 : \n H e l l o \n
+	 * 
+	 * nextInt() 이후 nextLine()
+	 * 			 -> 입력 버퍼에서 다음 문자열을 읽어옴. (다음으로 만나는 첫 개행 문자(포함) 까지)
+	 * 			 -> nextLine() == \n
+	 * 			    남은 입력 버퍼 : H e l l o \n
+	 * 
+	 * **** 이 문제를 해결하는 방법!
+	 * 문제점 : next(), nextInt() 사용 후 
+	 *        입력 버퍼 제일 앞에 \n이 남아있다
+	 *        그래서 다음 nextLine() 시 제일 앞에 남아있는 \n을 읽어와
+	 *        빈칸을 읽어오는 불상사가 발생함
+	 *       
+	 * 해결 방법 :  next(), nextInt()  구문 뒤에 
+	 * 		      의미 없는 nextLine()을 한 번 작성하여   
+	 * 			  입력 버퍼에 남은 \n을 제거
+	 * 
+	 * */
+	
+	
+	public void practice14b() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("배열의 크기를 입력하세요 : ");
+		int size = sc.nextInt();
+		sc.nextLine(); // 입력 버퍼에 남아있는 개행문자 제거
+		
+		String[] arr = new String[size];
+		
+		int index = 0; // 문자열을 입력 받고 나서 값이 저장된 마지막 인덱스 + 1 을 저장
+					   // 배열의 길이가 증가된 후 시작 인덱스로 사용
+		while(true) {
+				
+			for(int i=index ; i<arr.length ; i++) {
+				System.out.print( i+1 + "번째 문자열 : ");
+				arr[i] = sc.nextLine(); // -> 다음 입력된 문자열 중 엔터까지 읽어온다.
+				// next(), nextDouble(), nextInt() 등등
+				// -> 다음 입력된 단어,정수,실수를 읽어옴. (띄어쓰기 또는 엔터 이전까지 읽어옴)
+			}
+			
+			index = arr.length; 
+			
+			
+			System.out.println("더 값을 입력하시겠습니까?(Y/N) : ");
+			char ch = sc.nextLine().charAt(0);
+			
+			if(ch == 'Y' || ch == 'y') {
+				System.out.print("더 입력하고 싶은 개수 : ");
+				int addSize = sc.nextInt();
+				sc.nextLine(); // 입력 버퍼 개행문자 제거
+				
+				// 배열의 크기를 늘린 후 추가 입력
+				// -> 한 번 만들어진 배열은 크기를 늘릴 수 없다
+				// --> 더 큰 배열을 만들 기본 배열 내용을 깊은 복사
+				String[] copyArr = new String[arr.length + addSize];
+				
+				System.arraycopy(arr, 0, copyArr, 0, arr.length); // 깊은 복사
+				
+				// 얕은 복사
+				arr = copyArr;
+				
+			} else if(ch == 'N' || ch == 'n') {
+				break; // while문 break
+				
+			} else {
+				// 다시 입력 받는 동작
+			}
+			
+		} // while end
+		
+		// 결과 출력
+		System.out.println( Arrays.toString(arr) );
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

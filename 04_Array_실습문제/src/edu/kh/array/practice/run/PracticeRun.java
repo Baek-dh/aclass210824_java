@@ -13,7 +13,8 @@ public class PracticeRun {
 //		service.practice4();
 //		service.practice5();
 //		service.practice6();
-		service.practice7();
+//		service.practice7();
+		service.practice14b();
 		
 	}
 }
