@@ -458,7 +458,7 @@ public class PracticeService {
 	*/
 	public void practice10() {
 		Scanner sc = new Scanner(System.in);
-		char[][] board = new char[6][6]; // char형 6행 6열 2차원 배열 생성
+		char[][] board = new char[67][6]; // char형 6행 6열 2차원 배열 생성
 
 
 		// 행과 열의 인덱스를 표시하는 부분에 인덱스 대입
@@ -616,9 +616,13 @@ public class PracticeService {
 		}else {
 			System.out.println("검색 결과가 없습니다.");
 		}
-		
-		
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
