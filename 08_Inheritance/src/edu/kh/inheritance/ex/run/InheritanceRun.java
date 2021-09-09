@@ -8,7 +8,8 @@ public class InheritanceRun {
 		
 		InheritanceService service = new InheritanceService();
 //		service.example1();
-		service.example2();
+//		service.example2();
+		service.example3();
 		
 	}
 

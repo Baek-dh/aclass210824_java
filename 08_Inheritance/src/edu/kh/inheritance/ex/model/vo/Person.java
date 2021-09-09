@@ -107,6 +107,13 @@ public class Person extends Object {
 	
 	
 	
+	public String overridingTest() {
+		return "Person 클래스에 작성된 오버라이딩 테스트 메서드";
+	}
+	
+	
+	
+	
 	
 	
 }

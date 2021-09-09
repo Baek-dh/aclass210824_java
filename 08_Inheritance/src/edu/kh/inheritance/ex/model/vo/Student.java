@@ -22,7 +22,10 @@ public final class Student extends Person {
 	private int classRoom; // 반
 	
 	// 생성자
-	public Student() { }  // 기본 생성자
+	public Student() {
+		super(); // 자식 객체 내의 부모 객체를 생성하기 위해 작성.
+				 // 미작성 시 컴파일러가 자동으로 추가함.
+	}  // 기본 생성자
 	
 	// 매개변수 있는 생성자
 	// Student가 가지고있는 필드 : grade, classRoom
@@ -41,7 +44,6 @@ public final class Student extends Person {
 		// 부모 매개변수 있는 생성자
 		super(name, age, nationality);
 		// -> 코드 재사용성 증가, 코드 길이 감소
-		
 		
 		this.grade = grade;
 		this.classRoom = classRoom;
@@ -131,12 +133,28 @@ public final class Student extends Person {
 	
 	// final 메서드 오버라이딩 불가 확인
 	/*@Override
-	public void breath() {
+	public void brerprㄱath() {
 		// Cannot override the final method from Person
 		// -> Person에 있는 final 메서드로 오버라이딩 불가
 	}*/
 	
 	
+	@Override // 메소드가 오버라이딩 되었음을 컴파일러에 알려주는 어노테이션
+	public String overridingTest() {
+		return "Student에서 오버라이딩 되었음.";
+	}
+	
+	
+	// 메서드 오버로딩
+	public int sum(int num1, int num2) {
+		int sum = num1 + num2;
+		return sum;
+	}
+	
+	public double sum(double num1, double num2) {
+		double sum = num1 + num2;
+		return sum;
+	}
 	
 	
 	
