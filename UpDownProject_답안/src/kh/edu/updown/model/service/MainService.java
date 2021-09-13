@@ -59,7 +59,7 @@ public class MainService {
 					System.out.println("3. 전체 회원 조회");
 					System.out.println("4. 비밀번호 변경");
 					System.out.println("9. 로그아웃");
-					System.out.println("메뉴 선택 >> ");
+					System.out.print("메뉴 선택 >> ");
 					
 					sel = sc.nextInt();
 					sc.nextLine();
@@ -162,9 +162,36 @@ public class MainService {
 	public void login() {
 		
 		System.out.println("[로그인]");
+		System.out.print("아이디 : ");
+		String inputId = sc.next();
+		
+		System.out.print("비밀번호 : ");
+		String inputPw  = sc.next();
 		
 		
+		for(int i=0 ; i<members.length ; i++) {
+			
+			if(members[i] != null) { // members 배열 요소가 null이 아닌경우 == 회원 정보가 있는 경우
+				
+				// members 배열 요소 중 입력 받은 아이디, 비밀번호가 일치하는 회원이 있을 경우
+				if(members[i].getMemberId().equals(inputId) && members[i].getMemberPw().equals(inputPw) ) {
+					System.out.println(members[i].getMemberName() + "님 환영합니다.");
+					
+					loginMember = members[i]; // loginMember 필드에 일치하는 회원 객체의 주소를 얕은 복사
+					break;
+				}
+				
+			} else { // members 배열요소가 null인 경우 == 회원 정보가 없는 경우
+				break;
+			}
+			
+		} // end for
 		
+		
+		// 아이디, 비밀번호를 비교한 후에도 loginMember필드가 null인 경우 == 로그인 실패
+		if(loginMember == null) {
+			System.out.println("아이디 또는 비밀번호가 일치하지 않습니다.");
+		}
 	}
 	
 	
