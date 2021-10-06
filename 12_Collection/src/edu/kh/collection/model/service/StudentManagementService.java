@@ -308,7 +308,6 @@ public class StudentManagementService {
 			System.out.println("일치하는 학생이 존재하지 않습니다.");
 		}
 		
-		
 	}
 	
 	
